@@ -19,13 +19,9 @@ public abstract class MixinPlayerEntityRenderer {
     @Inject(at = @At("HEAD"), method = "getArmPose", cancellable = true)
     @Environment(EnvType.CLIENT)
     private static void getArmPose(AbstractClientPlayerEntity abstractClientPlayerEntity, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
-        ItemStack itemStack = abstractClientPlayerEntity.getStackInHand(hand);
-        ItemStack itemStack2 = abstractClientPlayerEntity.getOffHandStack();
-
-        if (itemStack2.getItem() instanceof ShieldItem && abstractClientPlayerEntity.isUsingItem()) {
+        if (abstractClientPlayerEntity.isUsingItem()) {
             cir.setReturnValue(BipedEntityModel.ArmPose.BLOCK);
-        }
-        if (itemStack.getItem() instanceof ShieldItem) {
+        } else {
             cir.setReturnValue(BipedEntityModel.ArmPose.EMPTY);
         }
     }

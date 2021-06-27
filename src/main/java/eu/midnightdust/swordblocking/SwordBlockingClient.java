@@ -14,7 +14,7 @@ public class SwordBlockingClient implements ClientModInitializer {
         Registry.ITEM.forEach((item) -> {
             if(item instanceof SwordItem) {
                 FabricModelPredicateProviderRegistry.register(item, new Identifier("blocking"), (stack, world, entity) ->
-                        entity != null && entity.getOffHandStack().getItem().equals(Items.SHIELD) && entity.isUsingItem() ? 1.0F : 0.0F);
+                        entity != null && entity.isUsingItem() ? 1.0F : 0.0F);
             }
         });
     }
